@@ -1,21 +1,21 @@
 <template>
 	<div>
 			<div class="topic-head">
-				<img  class="pic-all" src="../assets/image/all.png" />
+				<img  class="pic-all" src="../assets/image/special.png" />
 				<span class="SpecialListPage-title">全部专题</span>
-				<span class="SpecialListPage-count"></span>
+				<span class="SpecialListPage-count">共有489个专题</span>
 			</div>
 			
 			<div class="container">
-				<div class="aa" v-for="(item,index) in specials" :key="index">
-					<div class="a1"><img :src="item.banner" alt=""></div>
-					<div class="a2">
-						<div class="bb">
+				<div class="row" v-for="(item,index) in specials" :key="index">
+					<div class="left"><img :src="item.banner" alt=""></div>
+					<div class="right">
+						<div class="w-row">
 							<h3 style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{item.title}}</h3>
 							<button class="button"><h4>关注专题</h4></button></div>
 						
-						<p class="cc">{{item.updated}}更新·{{item.viewCount}}次浏览</p>
-						<p class="dd">{{item.introduction}}</p>
+						<p class="meta">{{item.updated}}更新·{{item.viewCount}}次浏览</p>
+						<p class="introduction">{{item.introduction}}</p>
 						<!--显示标签类型-->
 						<span v-for="(section,index) in item.sections" :key="index" class="section">
 							{{section.sectionTitle}}
@@ -46,7 +46,7 @@
 
 <style lang="scss" scoped>
 	@font-face {
-		font-family: 'iconfont'; 
+		font-family: 'iconfont'; /* project id 1616266 */
 		src: url('//at.alicdn.com/t/font_1616266_b8gknsgz736.eot');
 		src: url('//at.alicdn.com/t/font_1616266_b8gknsgz736.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_1616266_b8gknsgz736.woff2') format('woff2'),
 			url('//at.alicdn.com/t/font_1616266_b8gknsgz736.woff') format('woff'), url('//at.alicdn.com/t/font_1616266_b8gknsgz736.ttf') format('truetype'),
@@ -67,18 +67,18 @@
 		margin-top: 15px;
 		
 		}
-		.aa{background-color: rgb(255,255,255);
+		.row{background-color: rgb(255,255,255);
 			display: flex;
 			height: 200px;
 			margin: 15px;
 			border-radius: 10px;
 		}
-		.a1{
+		.left{
 			width: 40%;
 			
 			text-align: center;
 		}
-		.a1 img{
+		.left img{
 			width: 90%;
 			margin-top: 25px;
 			height: 150px;
@@ -86,12 +86,12 @@
 			
 			
 		}
-		.a2{
+		.right{
 			margin-top: 20px;
 			width: 60%;
 			margin-right: 20px;
 		}
-		.bb h3{
+		.w-row h3{
 			width: 80%;
 			
 		}
@@ -105,20 +105,20 @@
 			position: absolute;
 			left: 1080px;
 			}
-		.cc{
+		.meta{
 			margin-top: 5px;
 			color: darkgray;
 			font-size: 12px;
 		}
-		.dd{
+		.introduction{
 			margin-top: 10px;
 			margin-bottom: 10px;
 			text-overflow: -o-ellipsis-lastline;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			display: -webkit-box;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
+			display: -webkit-box;/*重点，不能用block等其他*/
+			-webkit-line-clamp: 2;/*重点IE和火狐不支持*/
+			-webkit-box-orient: vertical;/*重点*/
 		}
 		.section{
 			float: left;
