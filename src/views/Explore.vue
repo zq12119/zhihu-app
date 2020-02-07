@@ -92,7 +92,124 @@
 			<router-link to="/roundtable" class="btn"><button class="button-topic">
 					<h3 style="color: #A9A9A9;">查看更多圆桌 ></h3>
 				</button></router-link>
-		</div>		
+		</div>
+				
+		<!-- 热门收藏夹 -->
+		<div class="container2" style="margin-left: 300px;">
+			<div class="head">
+				<!-- 图标 -->
+				<img class="pic-favorite" src="../assets/image/favorite.png" />
+				<h2 style="margin-top: 20px; margin-bottom: 20px;margin-left: 10px; font-size: 30px;">热门收藏夹</h2>
+			</div>
+			<div class="row">
+				<div class="favorite" v-for="(item, index) in favorite" :key="index">
+					<div class="fav-top">
+						<!-- 标题 -->
+						<div class="fav-title" style="padding: 30px;">
+							<h3>{{item.title }}</h3>
+						</div>
+						<!-- 关注按钮 -->
+						<div style="padding: 30px;margin-left: 320px; margin-top: -80px;">
+							<button class="fav-button">
+								<h4>关注收藏夹</h4>
+							</button>
+						</div>
+						<!-- 用户头像 -->
+						<div class="author-header" style="padding: 30px;margin-top: -40px;">
+							<img :src="item.creatorAvatar" alt="" style="float: left;" />
+							<!-- 用户名 -->
+							<span style="float: left;color: #000000;">{{item.creatorName}}</span><span style="float: left;color: #8590A6;font-size: 15px;">&nbsp;&nbsp;创建&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;{{item.followers}}人关注</span>
+						</div>
+					</div>
+
+					<!-- 水平线 -->
+					<div>
+						<hr style="border: 1px solid #E5E5E5;color: #E5E5E5; width: 90%; margin: 0 auto; margin-top: 25px;">
+					</div>
+
+					<div class="fav-bottom">
+						<!-- 问题标题 -->
+						<div class="fav-question" style="margin-top: -5px;">
+							<h4>
+								<p style="padding: 30px;">{{item.questionTitle}}</p>
+							</h4>
+						</div>
+						<!-- 回答内容 -->
+						<div class="fav-content">
+							<!-- nobr标签不会换行 -->
+							<nobr><span class="content">{{item.answerContent}}</span></nobr>
+						</div>
+						<!-- 赞与评论 -->
+						<div class="fav-voteup" style="padding: 30px; margin-top: -30px;font-size: 8px;margin-left: -5px;">
+							<span>{{item.voteupCount}}&nbsp;赞同&nbsp;·&nbsp;{{item.commentCount}}&nbsp;评论&nbsp;</span>
+						</div>
+						<div class="fav-favorite-count" style="margin-top: -10px;padding: 30px;margin-left: -5px;margin-top: -30px;">
+							<h2><span style="color: #8590A6;font-size: 15px;">已收藏{{item.totalCount}}条内容&nbsp;&nbsp;></span></h2>
+						</div>
+					</div>
+
+				</div>
+				<div class="topic" style="margin-left: -60px;">
+					<router-link to="/favorite" class="btn">
+						<button class="button-topic" style="margin-left: 470px;">
+							<h3 style="color: #A9A9A9; ;">查看更多收藏夹&nbsp;></h3>
+						</button></router-link>
+				</div>
+			</div>
+		</div>
+
+		<!-- 专栏 -->
+		<div class="columns" style="margin-left: 300px;">
+			<div class="head">
+				<!-- 从知乎拷来的svg图标 -->
+				<svg class="columns-img" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+					<path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm4.043-15.524a.745.745 
+	0 0 0-1.053.017l-6.857 7.071 2.237 2.17 6.857-7.071a.743.743 0 0 0-.016-1.052l-1.168-1.135zm-9.028 9.476l-.348 
+	1.381 1.37-.39 1.274-.36-1.973-1.916-.323 1.285z"
+					 fill-rule="evenodd"></path>
+				</svg>
+				<h2 style="margin-top: 20px; margin-bottom: 20px;margin-left: 10px; font-size: 30px;">专栏</h2>
+			</div>
+		</div>
+		<div class="row2">
+			<div class="row-columns" v-for="(item, index) in columns" :key="index">
+				<!-- 头像 -->
+			
+				<div class="columns-header" style="width: 70px; height: 70px;border-radius: 50%; overflow: hidden;margin:  0 auto; margin-top: 20px;">
+					<img :src="item.imageUrl" alt="" style="width: 100%;"/>
+				</div>
+				
+				<!-- title -->
+	
+				<div class="columnbs-title">
+					<onbr><h2><span style="color: #000000;">{{item.title}}</span></h2></onbr>
+				</div>
+				<!-- 关注与文章 -->
+				<div class="cloumnbs-followers-articles_count">
+					<span style="font-size: 12px; text-align: center;">{{item.followers}}&nbsp;关注&nbsp;·&nbsp;{{item.articlesCount}}&nbsp;文章</span>
+				</div>
+				<!-- 介绍 -->
+				<div class="columnbs-description" style="height:auto; text-overflow: ellipsis; overflow: hidden;margin-top: 15px;text-align: center;">
+				<onbr><span style="font-size: 13px;text-align: center;color: #000000;">{{item.description}}</span></onbr>
+				</div>
+				<!-- 进入专栏按钮 -->
+				<a v-bind:href="item.url" style="text-decoration: none;display:block;">
+					<div class="columnbs-button" style="height: 35px;width:100px;margin: 0 auto; margin-top: 20px;">
+						<!-- 关注按钮 -->
+				
+					<button class="button" style="height: 35px;width:100px;margin: 0 auto;border: 1px solid; border-color: #4CAF50;background-color: #FFFFFF;">
+							<h4 style="color: #4CAF50;">进入专栏</h4>
+					</button>
+					</div></a>
+			</div>
+				<div class="topic" style="margin-left: -60px;">
+				<router-link to="/columns" class="btn">
+					<button class="button-topic" style="margin-left: 470px;">
+						<h3 style="color: #A9A9A9; ;">查看更多专栏&nbsp;></h3>
+					</button></router-link>
+			</div>
+		</div>
+				
 	</div>
 </template>
 
@@ -102,7 +219,9 @@ export default {
 	data() {
 		return {
 			specials: [],
-			roundtable: []
+			roundtable: [],
+			favorite: [],
+			columns:[],
 		};
 	},
 	created() {
@@ -111,11 +230,24 @@ export default {
 					console.log(res);
 					this.roundtable = res.data.data;
 				});
+				
 	//最新专题的接口获取
 		this.axios.get('http://localhost:8080/api/special').then(res => {
 			console.log(res);
 			this.specials = res.data.data;
 		});
+		
+		// 收藏讨论的接口获取
+			this.axios.get('http://localhost:8080/api/favorite').then(res => {
+				console.log(res);
+				this.favorite = res.data.data;
+			});
+		
+		// 专栏的接口获取
+			this.axios.get('http://localhost:8080/api/columns').then(res => {
+				console.log(res);
+				this.columns = res.data.data;
+			});
 	   
 	}
 };
